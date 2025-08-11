@@ -1,12 +1,10 @@
 # .github/workflows/release-please.yml
 name: Release Please
-
 on:
   push:
     branches:
       - main # our main branch
   workflow_dispatch:
-
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -22,23 +20,10 @@ jobs:
       id: ${{ steps.release.outputs.id }}
       body: ${{ steps.release.outputs.body }}
       upload_url: ${{ steps.release.outputs.upload_url }}
-
     steps:
       - name: Run Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          release-type: node
+          release-type: python
           target-branch: main
-###
-### Give Release-please permission
-### Go to your GitHub repository.
-### Click on Settings.
-### In the left sidebar, click on Actions.
-### Then click on General.
-### Scroll down to "Workflow permissions".
-### Set the default permissions granted to the GITHUB_TOKEN for all workflow runs.
-### [ ] Read repository contents and packages permissions
-### [x] Read and write permissions  <-- Make sure this is checked
-
-### [x] Allow GitHub Actions to create and approve pull requests <-- You already checked this
